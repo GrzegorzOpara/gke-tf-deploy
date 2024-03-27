@@ -4,7 +4,12 @@ variable "project_id" {
 }
 
 variable "region" {
-  description = "The GCP region where the network will be deployed."
+  description = "The GCP region where the cluster will be deployed."
+  type        = string
+}
+
+variable "zone" {
+  description = "The zone in GCP region where the cluster will be deployed."
   type        = string
 }
 

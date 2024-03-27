@@ -19,7 +19,7 @@ resource "google_container_cluster" "primary" {
 # Separately Managed Node Pool
 resource "google_container_node_pool" "app-node-pool" {
   name       = google_container_cluster.primary.name
-  location   = var.region
+  location   = var.region + "/" + var.zone
   cluster    = google_container_cluster.primary.name
   
   version = data.google_container_engine_versions.gke_version.release_channel_latest_version["STABLE"]
