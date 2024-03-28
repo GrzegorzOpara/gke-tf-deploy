@@ -6,7 +6,7 @@ data "google_container_engine_versions" "gke_version" {
 
 resource "google_container_cluster" "primary" {
   name     = "${var.project_id}-gke"
-  location = var.region
+  location = var.zone
 
   deletion_protection = false
   remove_default_node_pool = true
@@ -19,7 +19,7 @@ resource "google_container_cluster" "primary" {
 # Separately Managed Node Pool
 resource "google_container_node_pool" "app-node-pool" {
   name       = google_container_cluster.primary.name
-  location   = var.region
+  location   = var.zone
   cluster    = google_container_cluster.primary.name
   
   version = data.google_container_engine_versions.gke_version.release_channel_latest_version["STABLE"]
@@ -37,7 +37,6 @@ resource "google_container_node_pool" "app-node-pool" {
     ]
 
     preemptible  = true
-    zone = var.zone
     machine_type = "e2-micro"
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
