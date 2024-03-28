@@ -23,11 +23,11 @@ resource "google_container_node_pool" "app-node-pool" {
   cluster    = google_container_cluster.primary.name
   
   version = data.google_container_engine_versions.gke_version.release_channel_latest_version["STABLE"]
-  node_count = 1
+  # node_count = 1
 
   autoscaling {
-    min_node_count = 1
-    max_node_count = 2
+    min_node_count = var.min_nodes
+    max_node_count = var.max_nodes
   }
 
   node_config {

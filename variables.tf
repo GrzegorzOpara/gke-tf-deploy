@@ -12,3 +12,13 @@ variable "zone" {
   description = "The zone in GCP region where the cluster will be deployed."
   type        = string
 }
+
+variable "min_nodes" {
+  description = "Min number of nodes for autoscaler"
+  type        = number
+}
+
+variable "max_nodes" {
+  description = "Max number of nodes for autoscaler"
+  type        = number
+}
