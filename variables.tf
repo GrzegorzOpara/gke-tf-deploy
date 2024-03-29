@@ -12,3 +12,13 @@ variable "zone" {
   description = "The zone in GCP region where the cluster will be deployed."
   type        = string
 }
+
+variable "node_size" {
+  description = "The VM type of the node"
+  type        = string
+}
+
+variable "node_pool_size" {
+  description = "The number of VM in a node pool"
+  type        = number
+}

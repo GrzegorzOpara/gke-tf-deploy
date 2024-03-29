@@ -22,3 +22,13 @@ variable "subnet_id" {
   description = "The ID of the created private vpc connection."
   type        = string
 }
+
+variable "node_size" {
+  description = "The VM type of the node"
+  type        = string
+}
+
+variable "node_pool_size" {
+  description = "The number of VM in a node pool"
+  type        = number
+}

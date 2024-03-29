@@ -1,0 +1,10 @@
+title: tf_gcs_mgt
+description: Managing a tfstate file on GCS
+stage: GA
+includedPermissions:
+- storage.buckets.create
+- storage.buckets.list
+- storage.objects.get
+- storage.objects.create
+- storage.objects.delete
+- storage.objects.update

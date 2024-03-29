@@ -23,7 +23,7 @@ resource "google_container_node_pool" "app-node-pool" {
   cluster    = google_container_cluster.primary.name
   
   version = data.google_container_engine_versions.gke_version.release_channel_latest_version["STABLE"]
-   node_count = 1
+  node_count = var.node_pool_size
 
   node_config {
     oauth_scopes = [
@@ -32,7 +32,7 @@ resource "google_container_node_pool" "app-node-pool" {
     ]
 
     preemptible  = true
-    machine_type = "e2-micro"
+    machine_type = var.node_size
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
