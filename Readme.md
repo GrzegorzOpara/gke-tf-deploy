@@ -16,6 +16,7 @@
 
   ```sh
   gcloud services enable cloudbuild.googleapis.com
+  gcloud services enable container.googleapis.com
   gcloud services enable secretmanager.googleapis.com
   gcloud services enable cloudresourcemanager.googleapis.com
   ```

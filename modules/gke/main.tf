@@ -18,7 +18,7 @@ resource "google_container_cluster" "primary" {
 
 # Separately Managed Node Pool
 resource "google_container_node_pool" "app-node-pool" {
-  name       = google_container_cluster.primary.name
+  name       = "app-node-pool"
   location   = var.zone
   cluster    = google_container_cluster.primary.name
   
