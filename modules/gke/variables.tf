@@ -22,13 +22,3 @@ variable "subnet_id" {
   description = "The ID of the created private vpc connection."
   type        = string
 }
-
-variable "min_nodes" {
-  description = "Min number of nodes for autoscaler"
-  type        = number
-}
-
-variable "max_nodes" {
-  description = "Max number of nodes for autoscaler"
-  type        = number
-}

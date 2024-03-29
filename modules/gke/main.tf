@@ -8,9 +8,9 @@ resource "google_container_cluster" "primary" {
   name     = "${var.project_id}-gke"
   location = var.zone
 
-  deletion_protection = false
-  remove_default_node_pool = true
-  initial_node_count       = 1
+  deletion_protection       = false
+  remove_default_node_pool  = true
+  initial_node_count        = 1
 
   network    = var.network_id
   subnetwork = var.subnet_id
@@ -23,12 +23,7 @@ resource "google_container_node_pool" "app-node-pool" {
   cluster    = google_container_cluster.primary.name
   
   version = data.google_container_engine_versions.gke_version.release_channel_latest_version["STABLE"]
-  # node_count = 1
-
-  autoscaling {
-    min_node_count = var.min_nodes
-    max_node_count = var.max_nodes
-  }
+   node_count = 1
 
   node_config {
     oauth_scopes = [

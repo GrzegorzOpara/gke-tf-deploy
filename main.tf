@@ -17,7 +17,5 @@ module "gke" {
   region              = var.region
   zone                = var.zone
   network_id          = module.network.vpc_id
-  subnet_id           = module.network.gke_subnet_id 
-  min_nodes           = var.min_nodes
-  max_nodes           = var.max_nodes
+  subnet_id           = module.network.gke_subnet_id
 }
