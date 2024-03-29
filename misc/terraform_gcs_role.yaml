@@ -8,3 +8,4 @@ includedPermissions:
 - storage.objects.create
 - storage.objects.delete
 - storage.objects.update
+- storage.objects.list
