@@ -19,6 +19,8 @@
   gcloud services enable container.googleapis.com
   gcloud services enable secretmanager.googleapis.com
   gcloud services enable cloudresourcemanager.googleapis.com
+  gcloud services enable cloudfunctions.googleapis.com
+  gcloud services enable run.googleapis.com
   ```
 
 ### Cloud Build configuration
