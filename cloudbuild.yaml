@@ -14,7 +14,7 @@ steps:
 options:
   env: 
     - 'TF_VAR_project_id=$PROJECT_ID'
-    - 'TF_VAR_region=${_REGION}'
+    - 'TF_VAR_region=${_region}'
     - 'TF_VAR_zone=${_zone}'
     - 'TF_VAR_node_size=${_node_size}'
     - 'TF_VAR_node_pool_size=${_node_pool_size}'
