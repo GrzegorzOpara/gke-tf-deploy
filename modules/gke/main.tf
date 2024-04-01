@@ -47,7 +47,7 @@ resource "google_container_node_pool" "app-node-pool" {
   }
 }
 
-resource "google_container_node_pool" "app-node-pool" {
+resource "google_container_node_pool" "db-node-pool" {
   name       = "app-node-pool"
   location   = var.zone
   cluster    = google_container_cluster.primary.name
