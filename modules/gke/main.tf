@@ -13,6 +13,10 @@ resource "google_container_cluster" "primary" {
 
   network    = var.network_id
   subnetwork = var.subnet_id
+
+  cluster_autoscaling {
+    autoscaling_profile = "OPTIMIZE_UTILIZATION"
+  }
 }
 
 # Separately Managed Node Pool
@@ -27,6 +31,7 @@ resource "google_container_node_pool" "app-node-pool" {
   autoscaling {
     min_node_count = 1
     max_node_count = 2
+    
   }
 
   node_config {
