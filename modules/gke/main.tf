@@ -53,12 +53,8 @@ resource "google_container_node_pool" "db-node-pool" {
   cluster    = google_container_cluster.primary.name
   
   version = data.google_container_engine_versions.gke_version.release_channel_latest_version["STABLE"]
-  node_count = var.node_pool_size
 
-  autoscaling {
-    min_node_count = 1
-    max_node_count = 1
-  }
+  node_count = 1
 
   node_config {
     oauth_scopes = [
