@@ -1,4 +1,6 @@
-# Wordpress deployment on GCP
+# GKE deployment on GCP using Terraform
+This code helps deploy GKE cluster on GCP using terraform and cloud build (manual trigger)
+
 
 ## Prerequisites
 ### GCP
@@ -25,9 +27,8 @@
 
 ### Cloud Build configuration
 1. Create github host connection (https://pantheon.corp.google.com/cloud-build/connections/create)
-2. Authentication - TBC
-3. Link the terraform repository
-4. Grant **project editor** and **network admin** permissions to Cloud Build Service Account
+2. Link the terraform repository
+3. Grant **project editor** and **network admin** permissions to Cloud Build Service Account
 
     ```sh
     PROJECT_ID=$(gcloud config get-value project)
@@ -38,7 +39,7 @@
 
     gcloud projects add-iam-policy-binding $PROJECT_ID --member serviceAccount:$CLOUDBUILD_SA --role roles/compute.networkAdmin
     ```
-5. Grant permissions to Cloud Build Service Account to access GCS Bucket with state file (https://cloud.google.com/docs/terraform/resource-management/store-state#before_you_begin)
+4. Grant permissions to Cloud Build Service Account to access GCS Bucket with state file (https://cloud.google.com/docs/terraform/resource-management/store-state#before_you_begin)
 
     ```sh
     PROJECT_ID=$(gcloud config get-value project)
@@ -48,3 +49,13 @@
 
     gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$CLOUDBUILD_SA --role=projects/$PROJECT_ID/roles/tf_gcs_mgt 
     ```
+  5. Deploy Cloud Run trigger using gcloud:
+
+  gcloud builds triggers create cloud-source-repositories \
+    --repo=REPO_NAME \
+    --branch-pattern=BRANCH_PATTERN \ # or --tag-pattern=TAG_PATTERN
+    --build-config=BUILD_CONFIG_FILE \
+    --service-account=SERVICE_ACCOUNT \
+    --require-approval
+
+gcloud builds triggers create cloud-source-repositories --repo="GrzegorzOpara/gke-tf-deploy" --tag-pattern='^\d+\.\d+\.\d+\$' --build-config=cloudbuild.yaml 
